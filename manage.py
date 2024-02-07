@@ -7,7 +7,7 @@ import sys
 def main():
     """Run administrative tasks."""
     # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'espProject.settings')
-    settings_module = 'espProject.prod' if os.environ['AZURE_ENVIRONMENT'] == 'prod' else 'espProject.settings'
+    settings_module = 'espProject.prod' if 'WEBSITE_HOSTNAME' in os.environ else 'espProject.settings'
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
     try:
         from django.core.management import execute_from_command_line

@@ -11,7 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-settings_module = 'espProject.prod' if os.environ['AZURE_ENVIRONMENT'] == 'prod' else 'espProject.settings'
+settings_module = 'espProject.prod' if 'WEBSITE_HOSTNAME' in os.environ else 'espProject.settings'
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 
