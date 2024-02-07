@@ -11,8 +11,13 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-settings_module = 'espProject.prod' if 'WEBSITE_HOSTNAME' in os.environ else 'espProject.settings'
+#settings_module = 'espProject.prod' if 'WEBSITE_HOSTNAME' in os.environ else 'espProject.settings'
+#settings_module = 'espProject.prod' if 'WEBSITE_SITE_NAME' in os.environ == "employeePortal1A" else 'espProject.settings'
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
+#os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 
+if 'WEBSITE_SITE_NAME' in os.environ == "employeePortal1A":
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'espProject.prod')
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'espProject.settings')
 application = get_wsgi_application()

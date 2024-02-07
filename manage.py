@@ -7,8 +7,12 @@ import sys
 def main():
     """Run administrative tasks."""
     # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'espProject.settings')
-    settings_module = 'espProject.prod' if 'WEBSITE_HOSTNAME' in os.environ else 'espProject.settings'
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
+    #settings_module = 'espProject.prod' if 'WEBSITE_HOSTNAME' in os.environ else 'espProject.settings'
+    #settings_module = 'espProject.prod' if 'WEBSITE_SITE_NAME' in os.environ == "employeePortal1A" else 'espProject.settings'
+    if 'WEBSITE_SITE_NAME' in os.environ == "employeePortal1A":
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'espProject.prod')
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'espProject.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
